@@ -1,0 +1,9 @@
+C:\Users\bruno\source\repos\PistaDeConducao\bin\Debug\PistaDeConducao.exe.config
+C:\Users\bruno\source\repos\PistaDeConducao\bin\Debug\PistaDeConducao.exe
+C:\Users\bruno\source\repos\PistaDeConducao\bin\Debug\PistaDeConducao.pdb
+C:\Users\bruno\source\repos\PistaDeConducao\obj\Debug\PistaDeConducao.csprojAssemblyReference.cache
+C:\Users\bruno\source\repos\PistaDeConducao\obj\Debug\PistaDeConducao.FormMain.resources
+C:\Users\bruno\source\repos\PistaDeConducao\obj\Debug\PistaDeConducao.Properties.Resources.resources
+C:\Users\bruno\source\repos\PistaDeConducao\obj\Debug\PistaDeConducao.csproj.GenerateResource.cache
+C:\Users\bruno\source\repos\PistaDeConducao\obj\Debug\PistaDeConducao.exe
+C:\Users\bruno\source\repos\PistaDeConducao\obj\Debug\PistaDeConducao.pdb
