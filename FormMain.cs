@@ -76,5 +76,43 @@ namespace PistaDeConducao
         {
             redesenhaArea();
         }
+
+        private void limpar_Click(object sender, EventArgs e)
+        {
+            //Graphics g = e.Graphics;
+        }
+
+        private void guardarPista_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int nome = 000;
+                nome++;
+                string fileName = nome.ToString("D3");
+
+                fileName = String.Concat(fileName, ".gls");
+                MessageBox.Show("Saving to " + fileName);
+                System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + fileName, areaDeJogo.Pontos.ToString());
+            }
+            catch (Exception f)
+            {
+                System.Diagnostics.Debug.Write(f);
+            }
+        }
+
+        private void textF_TextChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void textM_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textV_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

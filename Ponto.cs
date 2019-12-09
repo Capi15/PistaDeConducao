@@ -19,7 +19,7 @@ namespace PistaDeConducao
 
         public Ponto(Vector2 pos)
         {
-            this.dim = new SizeF(5, 5);
+            this.dim = new SizeF(20, 20);
             this.pos = pos;
         }
 
@@ -43,12 +43,13 @@ namespace PistaDeConducao
             set { pincel = value; }
         }
 
+        public bool IsFirst { get; internal set; }
 
         public void Draw(Graphics g)
         {
             g.ResetTransform();
-            pincel = new SolidBrush(Color.Orange);
-            RectangleF rectangle = new RectangleF(this.Pos.X, this.Pos.Y, Dim.Width, Dim.Height);
+            pincel = new SolidBrush(this.IsFirst ? Color.Gray : Color.Orange);
+            RectangleF rectangle = new RectangleF(this.Pos.X- Dim.Width/2, this.Pos.Y - Dim.Height/2, Dim.Width, Dim.Height);
             g.FillEllipse(pincel, rectangle);
         }
     }
