@@ -40,11 +40,14 @@
             this.forcaM = new System.Windows.Forms.Label();
             this.massa = new System.Windows.Forms.Label();
             this.velocidade = new System.Windows.Forms.Label();
-            this.textF = new System.Windows.Forms.TextBox();
-            this.textM = new System.Windows.Forms.TextBox();
-            this.textV = new System.Windows.Forms.TextBox();
+            this.numericUpDownFM = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownM = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownV = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArea)).BeginInit();
             this.menu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownV)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBoxArea
@@ -61,7 +64,7 @@
             this.pictureBoxArea.SizeChanged += new System.EventHandler(this.pictureBoxArea_SizeChanged);
             this.pictureBoxArea.Click += new System.EventHandler(this.pictureBoxArea_Click);
             this.pictureBoxArea.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxArea_Paint);
-            this.pictureBoxArea.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArea_MouseUp);
+            this.pictureBoxArea.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArea_MouseDown);
             // 
             // menu
             // 
@@ -91,7 +94,7 @@
             // timerAnima
             // 
             this.timerAnima.Enabled = true;
-            this.timerAnima.Interval = 16;
+            this.timerAnima.Interval = 30;
             this.timerAnima.Tick += new System.EventHandler(this.timerAnima_Tick);
             // 
             // guardarPista
@@ -122,9 +125,11 @@
             this.iniciarSimulacao.TabIndex = 4;
             this.iniciarSimulacao.Text = "Iniciar Simulação";
             this.iniciarSimulacao.UseVisualStyleBackColor = true;
+            this.iniciarSimulacao.Click += new System.EventHandler(this.iniciarSimulacao_Click);
             // 
             // forcaM
             // 
+            this.forcaM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.forcaM.AutoSize = true;
             this.forcaM.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.forcaM.Location = new System.Drawing.Point(8, 311);
@@ -135,6 +140,7 @@
             // 
             // massa
             // 
+            this.massa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.massa.AutoSize = true;
             this.massa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.massa.Location = new System.Drawing.Point(8, 357);
@@ -145,6 +151,7 @@
             // 
             // velocidade
             // 
+            this.velocidade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.velocidade.AutoSize = true;
             this.velocidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.velocidade.Location = new System.Drawing.Point(8, 404);
@@ -153,38 +160,38 @@
             this.velocidade.TabIndex = 7;
             this.velocidade.Text = "Velocidade";
             // 
-            // textF
+            // numericUpDownFM
             // 
-            this.textF.Location = new System.Drawing.Point(130, 313);
-            this.textF.Name = "textF";
-            this.textF.Size = new System.Drawing.Size(47, 20);
-            this.textF.TabIndex = 8;
-            this.textF.TextChanged += new System.EventHandler(this.textF_TextChanged);
+            this.numericUpDownFM.Location = new System.Drawing.Point(130, 311);
+            this.numericUpDownFM.Name = "numericUpDownFM";
+            this.numericUpDownFM.Size = new System.Drawing.Size(47, 20);
+            this.numericUpDownFM.TabIndex = 11;
+            this.numericUpDownFM.ValueChanged += new System.EventHandler(this.numericUpDownFM_ValueChanged);
             // 
-            // textM
+            // numericUpDownM
             // 
-            this.textM.Location = new System.Drawing.Point(130, 357);
-            this.textM.Name = "textM";
-            this.textM.Size = new System.Drawing.Size(47, 20);
-            this.textM.TabIndex = 9;
-            this.textM.TextChanged += new System.EventHandler(this.textM_TextChanged);
+            this.numericUpDownM.Location = new System.Drawing.Point(130, 360);
+            this.numericUpDownM.Name = "numericUpDownM";
+            this.numericUpDownM.Size = new System.Drawing.Size(47, 20);
+            this.numericUpDownM.TabIndex = 12;
+            this.numericUpDownM.ValueChanged += new System.EventHandler(this.numericUpDownM_ValueChanged);
             // 
-            // textV
+            // numericUpDownV
             // 
-            this.textV.Location = new System.Drawing.Point(130, 404);
-            this.textV.Name = "textV";
-            this.textV.Size = new System.Drawing.Size(47, 20);
-            this.textV.TabIndex = 10;
-            this.textV.TextChanged += new System.EventHandler(this.textV_TextChanged);
+            this.numericUpDownV.Location = new System.Drawing.Point(130, 407);
+            this.numericUpDownV.Name = "numericUpDownV";
+            this.numericUpDownV.Size = new System.Drawing.Size(47, 20);
+            this.numericUpDownV.TabIndex = 13;
+            this.numericUpDownV.ValueChanged += new System.EventHandler(this.numericUpDownV_ValueChanged);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textV);
-            this.Controls.Add(this.textM);
-            this.Controls.Add(this.textF);
+            this.Controls.Add(this.numericUpDownV);
+            this.Controls.Add(this.numericUpDownM);
+            this.Controls.Add(this.numericUpDownFM);
             this.Controls.Add(this.velocidade);
             this.Controls.Add(this.massa);
             this.Controls.Add(this.forcaM);
@@ -199,6 +206,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArea)).EndInit();
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,9 +227,9 @@
         private System.Windows.Forms.Label forcaM;
         private System.Windows.Forms.Label massa;
         private System.Windows.Forms.Label velocidade;
-        private System.Windows.Forms.TextBox textF;
-        private System.Windows.Forms.TextBox textM;
-        private System.Windows.Forms.TextBox textV;
+        private System.Windows.Forms.NumericUpDown numericUpDownFM;
+        private System.Windows.Forms.NumericUpDown numericUpDownM;
+        private System.Windows.Forms.NumericUpDown numericUpDownV;
     }
 }
 

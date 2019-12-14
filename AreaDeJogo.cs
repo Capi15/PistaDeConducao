@@ -14,6 +14,10 @@ namespace PistaDeConducao
         private Size area;
         private List<Ponto> pontos;
         private Carro carro;
+        private Ponto target;
+        private int currTargetIndex = 0;
+        private bool comeca = false;
+        private bool hasReachTheEnd = false;
 
 
         public AreaDeJogo(Size area)
@@ -23,10 +27,22 @@ namespace PistaDeConducao
             this.carro = new Carro();
         }
 
+        public bool Comeca
+        {
+            get { return comeca; }
+            set { comeca = value; }
+        }
+
         public List<Ponto> Pontos
         {
             get { return pontos; }
             set { pontos = value; }
+        }
+
+        public Carro Carro
+        {
+            get { return carro; }
+            set { carro = value; }
         }
 
         public Size Area
@@ -96,14 +112,41 @@ namespace PistaDeConducao
             if (this.pontos.Count >= 3)
                 g.DrawLine(p, p2.Pos.X, p2.Pos.Y, this.pontos[0].Pos.X, this.pontos[0].Pos.Y);
                 
-            if(this.pontos.Count <= 0)
-            {
+        }
 
-            }
-            else
+        public void move()
+        {
+            if (this.pontos.Count <= 0) return;
+
+            if (this.target == null)
             {
-                carro.Pos = new Vector2(this.pontos[0].Pos.X, this.pontos[0].Pos.Y);
+                this.target = this.pontos[0];
+            } else if (this.pontos[this.currTargetIndex].isPassou) {
+
+                if (!this.hasReachTheEnd && this.currTargetIndex != this.pontos.Count - 1)
+                {
+                    this.currTargetIndex += 1;
+                } else
+                {
+                    this.currTargetIndex = 0;
+                    this.hasReachTheEnd = true;
+                }
+
+                this.target = this.pontos[this.currTargetIndex];
+            }
+
+            Console.WriteLine(this.currTargetIndex);
+
+            this.carro.Acel *= 0;
+            this.carro.Acel += this.carro.Seek(this.target);
+            this.carro.Move();
+
+            if (Math.Sqrt(Math.Pow((this.target.Pos.X - this.carro.Pos.X), 2) + Math.Pow((this.target.Pos.Y - this.carro.Pos.Y), 2)) < 10d)
+            {
+                this.target.isPassou = true;
             }
         }
+
+    
     }
 }

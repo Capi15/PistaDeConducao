@@ -7,3 +7,6 @@ C:\Users\bruno\source\repos\PistaDeConducao\obj\Debug\PistaDeConducao.Properties
 C:\Users\bruno\source\repos\PistaDeConducao\obj\Debug\PistaDeConducao.csproj.GenerateResource.cache
 C:\Users\bruno\source\repos\PistaDeConducao\obj\Debug\PistaDeConducao.exe
 C:\Users\bruno\source\repos\PistaDeConducao\obj\Debug\PistaDeConducao.pdb
+C:\Users\bruno\source\repos\PistaDeConducao\bin\Debug\Newtonsoft.Json.dll
+C:\Users\bruno\source\repos\PistaDeConducao\bin\Debug\Newtonsoft.Json.xml
+C:\Users\bruno\source\repos\PistaDeConducao\obj\Debug\PistaDeConducao.csproj.CopyComplete

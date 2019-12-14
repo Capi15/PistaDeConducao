@@ -60,9 +60,8 @@ namespace PistaDeConducao
            
         }
 
-        private void pictureBoxArea_MouseUp(object sender, MouseEventArgs e)
+        private void pictureBoxArea_MouseDown(object sender, MouseEventArgs e)
         {
-            
             areaDeJogo.mouseOnClick(e.X, e.Y);
         }
 
@@ -74,45 +73,38 @@ namespace PistaDeConducao
 
         private void timerAnima_Tick(object sender, EventArgs e)
         {
+            areaDeJogo.move();
             redesenhaArea();
         }
 
         private void limpar_Click(object sender, EventArgs e)
         {
-            //Graphics g = e.Graphics;
+            areaDeJogo = new AreaDeJogo(pictureBoxArea.Size);
         }
 
         private void guardarPista_Click(object sender, EventArgs e)
         {
-            try
-            {
-                int nome = 000;
-                nome++;
-                string fileName = nome.ToString("D3");
-
-                fileName = String.Concat(fileName, ".gls");
-                MessageBox.Show("Saving to " + fileName);
-                System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + fileName, areaDeJogo.Pontos.ToString());
-            }
-            catch (Exception f)
-            {
-                System.Diagnostics.Debug.Write(f);
-            }
-        }
-
-        private void textF_TextChanged(object sender, EventArgs e)
-        {
-        
-        }
-
-        private void textM_TextChanged(object sender, EventArgs e)
-        {
 
         }
 
-        private void textV_TextChanged(object sender, EventArgs e)
+        private void numericUpDownFM_ValueChanged(object sender, EventArgs e)
         {
+            areaDeJogo.Carro.MaxF = (float)numericUpDownFM.Value;
+        }
 
+        private void numericUpDownM_ValueChanged(object sender, EventArgs e)
+        {
+            areaDeJogo.Carro.Massa = (float)numericUpDownM.Value;
+        }
+
+        private void numericUpDownV_ValueChanged(object sender, EventArgs e)
+        {
+            areaDeJogo.Carro.MaxS = (float)numericUpDownV.Value;
+        }
+
+        private void iniciarSimulacao_Click(object sender, EventArgs e)
+        {
+            areaDeJogo.Comeca = true; 
         }
     }
 }

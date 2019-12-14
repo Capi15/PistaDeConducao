@@ -10,37 +10,33 @@ namespace PistaDeConducao
 {
     class Carro
     {
-        private float MAX_SPEED = 5.0f;
-        private float MAX_FORCE = 0.2f;
-        private float massa = 1f;
         private float rotation;
         private Vector2 pos, vel, acel;
-        private SolidBrush pincel;
         private SizeF dim;
+        private PointF[] pontosBody;
+
 
 
         public Carro()
         {
-            pos = new Vector2(0, 0);
             dim = new SizeF(40f, 15f);
+            pos = new Vector2(0, 0);
+            vel = new Vector2(0.1f);
+            acel = new Vector2(0.1f);
+
+            this.pontosBody = new PointF[] {
+                new PointF(-dim.Width / (float)2, -dim.Height / (float)2),
+                new PointF(dim.Width/(float)2, 0),
+                new PointF(-dim.Width/(float)2, dim.Height/(float)2),
+                new PointF(-dim.Width / (float)2, -dim.Height / (float)2)
+            };
         }
 
-        public float Massa
-        {
-            get { return massa; }
-            set { massa = value; }
-        }
-        public float MaxF
-        {
-            get { return MAX_FORCE; }
-            set { MAX_FORCE = value; }
-        }
 
-        public float MaxS
-        {
-            get { return MAX_SPEED; }
-            set { MAX_SPEED = value; }
-        }
+        public float Massa { get; set; } = 1f;
+        public float MaxF { get; set; } = 0.2f;
+
+        public float MaxS { get; set; } = 5.0f;
 
         public Vector2 Vel
         {
@@ -69,28 +65,31 @@ namespace PistaDeConducao
         public void Draw(Graphics g)
         {
             g.ResetTransform();
-            pincel = new SolidBrush(Color.Black);
-            RectangleF rectangle = new RectangleF(this.Pos.X - Dim.Width / 2, this.Pos.Y -Dim.Height / 2, Dim.Width, Dim.Height);
-            g.FillRectangle(pincel, rectangle);
+            g.RotateTransform(this.rotation);
+            g.TranslateTransform(this.Pos.X, this.Pos.Y, System.Drawing.Drawing2D.MatrixOrder.Append);
+
+            g.FillPolygon(Brushes.Blue, this.pontosBody);
         }
 
-        public Vector2 conduz(Vector2 alvo)
+        public Vector2 Seek(Ponto alvo)
         {
+
             Vector2 forca = new Vector2(0);
 
-            Vector2 posDesejada = Vector2.Normalize(alvo - pos) * MAX_SPEED;
-            forca = posDesejada - vel;
+            Vector2 desejo = Vector2.Normalize(alvo.Pos - pos) * MaxS;
+            forca = desejo - vel;
 
             return forca;
         }
 
         public void Move()
         {
-            acel = truncate(acel, MAX_FORCE);
-
-            vel = truncate(vel + acel, MAX_SPEED);
+            acel = (this.truncate(acel, MaxF)/ Massa);
+            vel = this.truncate(vel + acel, MaxS);
             pos += vel;
+
             rotation = (float)Math.Atan2(vel.Y, vel.X) * 180 / (float)Math.PI;
+
         }
 
         private Vector2 truncate(Vector2 vetor, float max)
@@ -101,5 +100,7 @@ namespace PistaDeConducao
             }
             return vetor;
         }
+
+
     }
 }

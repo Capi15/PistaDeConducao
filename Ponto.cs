@@ -15,7 +15,7 @@ namespace PistaDeConducao
         private Vector2 pos;
         private SizeF dim;
         private SolidBrush pincel;
-
+        private Boolean passou = false;
 
         public Ponto(Vector2 pos)
         {
@@ -31,6 +31,11 @@ namespace PistaDeConducao
             set { pos = value; }
         }
 
+        public Boolean isPassou
+        {
+            get { return passou; }
+            set { passou = value; }
+        }
         public SizeF Dim
         {
             get { return dim; }
