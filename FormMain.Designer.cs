@@ -62,7 +62,6 @@
             this.pictureBoxArea.TabIndex = 0;
             this.pictureBoxArea.TabStop = false;
             this.pictureBoxArea.SizeChanged += new System.EventHandler(this.pictureBoxArea_SizeChanged);
-            this.pictureBoxArea.Click += new System.EventHandler(this.pictureBoxArea_Click);
             this.pictureBoxArea.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxArea_Paint);
             this.pictureBoxArea.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArea_MouseDown);
             // 

@@ -55,10 +55,6 @@ namespace PistaDeConducao
             myBuffer.Dispose();
         }
 
-        private void pictureBoxArea_Click(object sender, EventArgs e)
-        {
-           
-        }
 
         private void pictureBoxArea_MouseDown(object sender, MouseEventArgs e)
         {

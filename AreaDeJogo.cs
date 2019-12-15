@@ -58,14 +58,7 @@ namespace PistaDeConducao
         {
             
 
-            foreach(Ponto pontoP in pontos)
-            {
-                if (pontos[0] == null)
-                {
-                    Console.WriteLine(pontoP);
-                    pontoP.Pincel.Color = Color.Black;
-                    pontoP.Draw(g);
-                }
+            foreach(Ponto pontoP in pontos) { 
                 pontoP.Draw(g);
             }
 
