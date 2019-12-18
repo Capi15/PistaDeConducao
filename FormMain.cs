@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -78,9 +79,19 @@ namespace PistaDeConducao
             areaDeJogo = new AreaDeJogo(pictureBoxArea.Size);
         }
 
-        private void guardarPista_Click(object sender, EventArgs e)
+        private async void guardarPista_Click(object sender, EventArgs e)
         {
-
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "text Documents|*.txt", ValidateNames = true })
+            {
+                if(sfd.ShowDialog() == DialogResult.OK)
+                {
+                    using(StreamWriter sw = new StreamWriter(sfd.FileName))
+                    {
+                        await sw.WriteAsync(areaDeJogo.getString());
+                        MessageBox.Show("Pista guardada com sucesso!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
         }
 
         private void numericUpDownFM_ValueChanged(object sender, EventArgs e)
@@ -101,6 +112,25 @@ namespace PistaDeConducao
         private void iniciarSimulacao_Click(object sender, EventArgs e)
         {
             areaDeJogo.Comeca = true; 
+        }
+
+        private async void selecionarPista_Click(object sender, EventArgs e)
+        {
+            using(OpenFileDialog ofd = new OpenFileDialog() { Filter="Text Documents|*.txt", ValidateNames = true, Multiselect = false })
+            {
+                if(ofd.ShowDialog()== DialogResult.OK)
+                {
+                    using(StreamReader sr = new StreamReader(ofd.FileName))
+                    {
+
+                        areaDeJogo.DadosPonto = await sr.ReadToEndAsync();
+                    }
+                }
+            }
+
+            areaDeJogo.addFicheiroLista();
+
+            //C:\Users\bruno\source\repos\PistaDeConducao
         }
     }
 }

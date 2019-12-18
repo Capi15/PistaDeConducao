@@ -57,5 +57,10 @@ namespace PistaDeConducao
             RectangleF rectangle = new RectangleF(this.Pos.X- Dim.Width/2, this.Pos.Y - Dim.Height/2, Dim.Width, Dim.Height);
             g.FillEllipse(pincel, rectangle);
         }
+    
+        public override string ToString()
+        {
+            return Pos.X.ToString() +"-"+ Pos.Y.ToString();
+        }
     }
 }

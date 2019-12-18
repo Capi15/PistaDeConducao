@@ -43,6 +43,7 @@
             this.numericUpDownFM = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownM = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownV = new System.Windows.Forms.NumericUpDown();
+            this.selecionarPista = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArea)).BeginInit();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFM)).BeginInit();
@@ -108,7 +109,7 @@
             // 
             // limpar
             // 
-            this.limpar.Location = new System.Drawing.Point(12, 56);
+            this.limpar.Location = new System.Drawing.Point(12, 114);
             this.limpar.Name = "limpar";
             this.limpar.Size = new System.Drawing.Size(165, 23);
             this.limpar.TabIndex = 3;
@@ -183,11 +184,22 @@
             this.numericUpDownV.TabIndex = 13;
             this.numericUpDownV.ValueChanged += new System.EventHandler(this.numericUpDownV_ValueChanged);
             // 
+            // selecionarPista
+            // 
+            this.selecionarPista.Location = new System.Drawing.Point(12, 56);
+            this.selecionarPista.Name = "selecionarPista";
+            this.selecionarPista.Size = new System.Drawing.Size(165, 23);
+            this.selecionarPista.TabIndex = 14;
+            this.selecionarPista.Text = "Selecionar Pista";
+            this.selecionarPista.UseVisualStyleBackColor = true;
+            this.selecionarPista.Click += new System.EventHandler(this.selecionarPista_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.selecionarPista);
             this.Controls.Add(this.numericUpDownV);
             this.Controls.Add(this.numericUpDownM);
             this.Controls.Add(this.numericUpDownFM);
@@ -229,6 +241,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDownFM;
         private System.Windows.Forms.NumericUpDown numericUpDownM;
         private System.Windows.Forms.NumericUpDown numericUpDownV;
+        private System.Windows.Forms.Button selecionarPista;
     }
 }
 

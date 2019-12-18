@@ -18,6 +18,8 @@ namespace PistaDeConducao
         private int currTargetIndex = 0;
         private bool comeca = false;
         private bool hasReachTheEnd = false;
+        private String dadosPonto;
+        string[] xy;
 
 
         public AreaDeJogo(Size area)
@@ -31,6 +33,12 @@ namespace PistaDeConducao
         {
             get { return comeca; }
             set { comeca = value; }
+        }
+
+        public String DadosPonto
+        {
+            get { return dadosPonto; }
+            set { dadosPonto = value; }
         }
 
         public List<Ponto> Pontos
@@ -140,6 +148,32 @@ namespace PistaDeConducao
             }
         }
 
-    
+        public String getString()
+        {   
+                string pontoListados = string.Join(",", pontos);
+                return pontoListados;
+        }
+
+        public void addFicheiroLista()
+        {
+            
+            char[] limitaCoordenadas = { ',' };
+            char[] limitaPos = { '-' };
+            string[] newPos = DadosPonto.Split(limitaCoordenadas);
+            for(int i=0; i<newPos.Length; i++)
+            {
+                xy = newPos[i].Split(limitaCoordenadas);
+            }
+            int x, y;
+            x = int.Parse(xy[0]);
+            y = int.Parse(xy[1]);
+            Vector2 pos = new Vector2(x, y);
+            Ponto p = new Ponto(pos);
+            if (this.pontos.Count <= 0)
+                p.IsFirst = true;
+            pontos.Add(p);
+        }
+
+
     }
 }
