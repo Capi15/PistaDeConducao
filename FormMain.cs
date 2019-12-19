@@ -72,6 +72,15 @@ namespace PistaDeConducao
         {
             areaDeJogo.move();
             redesenhaArea();
+            if (areaDeJogo.HasReachedTheEnd)
+            {
+                foreach (var pontoN in areaDeJogo.Pontos)
+                {
+                    pontoN.isPassou = false;
+                }
+                iniciarSimulacao.Text = "Começar";
+                areaDeJogo.HasReachedTheEnd = false;
+            }
         }
 
         private void limpar_Click(object sender, EventArgs e)
@@ -111,7 +120,31 @@ namespace PistaDeConducao
 
         private void iniciarSimulacao_Click(object sender, EventArgs e)
         {
-            areaDeJogo.Comeca = true; 
+            areaDeJogo.Comeca = !areaDeJogo.Comeca;
+            if (!areaDeJogo.Comeca) {
+                iniciarSimulacao.Text = "Continuar";
+            }
+            else
+            {
+                iniciarSimulacao.Text = "Parar";
+            }
+
+            //if (areaDeJogo.HasReachedTheEnd)
+            //{
+            //    foreach (var pontoN in areaDeJogo.Pontos)
+            //    {
+            //        pontoN.isPassou = false;
+            //    }
+            //    iniciarSimulacao.Text = "Começar";
+            //    areaDeJogo.HasReachedTheEnd = false;
+            //    areaDeJogo.move();
+            //}
+        }
+
+        public String Iniciar
+        {
+            get { return iniciarSimulacao.Text; }
+            set { iniciarSimulacao.Text = value; }
         }
 
         private async void selecionarPista_Click(object sender, EventArgs e)

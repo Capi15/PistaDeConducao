@@ -162,6 +162,7 @@
             // 
             // numericUpDownFM
             // 
+            this.numericUpDownFM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.numericUpDownFM.Location = new System.Drawing.Point(130, 311);
             this.numericUpDownFM.Name = "numericUpDownFM";
             this.numericUpDownFM.Size = new System.Drawing.Size(47, 20);
@@ -170,14 +171,26 @@
             // 
             // numericUpDownM
             // 
+            this.numericUpDownM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.numericUpDownM.Location = new System.Drawing.Point(130, 360);
+            this.numericUpDownM.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownM.Name = "numericUpDownM";
             this.numericUpDownM.Size = new System.Drawing.Size(47, 20);
             this.numericUpDownM.TabIndex = 12;
+            this.numericUpDownM.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownM.ValueChanged += new System.EventHandler(this.numericUpDownM_ValueChanged);
             // 
             // numericUpDownV
             // 
+            this.numericUpDownV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.numericUpDownV.Location = new System.Drawing.Point(130, 407);
             this.numericUpDownV.Name = "numericUpDownV";
             this.numericUpDownV.Size = new System.Drawing.Size(47, 20);

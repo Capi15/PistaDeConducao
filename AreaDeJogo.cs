@@ -19,7 +19,6 @@ namespace PistaDeConducao
         private bool comeca = false;
         private bool hasReachTheEnd = false;
         private String dadosPonto;
-        string[] xy;
 
 
         public AreaDeJogo(Size area)
@@ -27,6 +26,12 @@ namespace PistaDeConducao
             this.area = area;
             this.pontos = new List<Ponto>();
             this.carro = new Carro();
+        }
+
+        public bool HasReachedTheEnd
+        {
+            get { return hasReachTheEnd; }
+            set { hasReachTheEnd = value; }
         }
 
         public bool Comeca
@@ -117,8 +122,9 @@ namespace PistaDeConducao
 
         public void move()
         {
-            if (this.pontos.Count <= 0) return;
 
+            if (this.Comeca) {
+            if (this.pontos.Count < 20) return;
             if (this.target == null)
             {
                 this.target = this.pontos[0];
@@ -131,7 +137,11 @@ namespace PistaDeConducao
                 {
                     this.currTargetIndex = 0;
                     this.hasReachTheEnd = true;
-                }
+                        if(this.currTargetIndex == 0)
+                        {
+                            this.Comeca = !this.Comeca;
+                        }
+                    }
 
                 this.target = this.pontos[this.currTargetIndex];
             }
@@ -145,6 +155,7 @@ namespace PistaDeConducao
             if (Math.Sqrt(Math.Pow((this.target.Pos.X - this.carro.Pos.X), 2) + Math.Pow((this.target.Pos.Y - this.carro.Pos.Y), 2)) < 10d)
             {
                 this.target.isPassou = true;
+            }
             }
         }
 
@@ -162,16 +173,17 @@ namespace PistaDeConducao
             string[] newPos = DadosPonto.Split(limitaCoordenadas);
             for(int i=0; i<newPos.Length; i++)
             {
-                xy = newPos[i].Split(limitaCoordenadas);
+                var xy = newPos[i].Split(limitaPos);
+                int x, y;
+                x = int.Parse(xy[0]);
+                y = int.Parse(xy[1]);
+                Vector2 pos = new Vector2(x, y);
+                Ponto p = new Ponto(pos);
+                if (this.pontos.Count <= 0)
+                    p.IsFirst = true;
+                pontos.Add(p);
             }
-            int x, y;
-            x = int.Parse(xy[0]);
-            y = int.Parse(xy[1]);
-            Vector2 pos = new Vector2(x, y);
-            Ponto p = new Ponto(pos);
-            if (this.pontos.Count <= 0)
-                p.IsFirst = true;
-            pontos.Add(p);
+            
         }
 
 
