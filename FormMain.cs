@@ -108,6 +108,13 @@ namespace PistaDeConducao
             areaDeJogo.Comeca = !areaDeJogo.Comeca;
             if (!areaDeJogo.Comeca) {
                 iniciarSimulacao.Text = "Continuar";
+
+                if (areaDeJogo.rounds >= 2)
+                {
+                    areaDeJogo.rounds = 0;
+                    areaDeJogo.Pontos.ForEach(p => p.isPassou = false);
+                    iniciarSimulacao.Text = "Começar";
+                }
             }
             else
             {

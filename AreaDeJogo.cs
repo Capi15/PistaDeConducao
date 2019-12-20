@@ -19,6 +19,7 @@ namespace PistaDeConducao
         private bool comeca = false;
         private bool hasReachTheEnd = false;
         private String dadosPonto;
+        public int rounds = 0;
 
 
         public AreaDeJogo(Size area)
@@ -122,42 +123,40 @@ namespace PistaDeConducao
 
         public void move()
         {
-
-            if (this.Comeca) {
-            if (this.pontos.Count < 20) return;
-            if (this.target == null)
-            {
-                this.target = this.pontos[0];
-            } else if (this.pontos[this.currTargetIndex].isPassou) {
-
-                if (!this.hasReachTheEnd && this.currTargetIndex != this.pontos.Count - 1)
+            if (this.rounds >= 2) return;
+            if (this.Comeca && this.pontos.Count >=20) {
+                if (this.target == null)
                 {
+                    this.target = this.pontos[this.currTargetIndex];
                     this.currTargetIndex += 1;
-                } else
-                {
-                    this.currTargetIndex = 0;
-                    this.hasReachTheEnd = true;
-                        if(this.currTargetIndex == 0)
-                        {
-                            this.Comeca = !this.Comeca;
-                        }
+                } else if (this.target.isPassou)  {
+                    if (this.currTargetIndex >= this.pontos.Count)
+                    {
+                        this.currTargetIndex = 0;
+                        this.target = this.pontos[this.currTargetIndex];
+                        this.target.isPassou = false;
+                        this.rounds += 1;
+                    } else
+                    {
+                        this.target = this.pontos[this.currTargetIndex];
                     }
+                    
+                   
+                    this.currTargetIndex += 1;
+                }
 
-                this.target = this.pontos[this.currTargetIndex];
-            }
+                this.carro.Acel *= 0;
+                this.carro.Acel += this.carro.Seek(this.target);
+                this.carro.Move();
 
-            Console.WriteLine(this.currTargetIndex);
-
-            this.carro.Acel *= 0;
-            this.carro.Acel += this.carro.Seek(this.target);
-            this.carro.Move();
-
-            if (Math.Sqrt(Math.Pow((this.target.Pos.X - this.carro.Pos.X), 2) + Math.Pow((this.target.Pos.Y - this.carro.Pos.Y), 2)) < 10d)
-            {
-                this.target.isPassou = true;
-            }
+                if (Math.Sqrt(Math.Pow((this.target.Pos.X - this.carro.Pos.X), 2) + Math.Pow((this.target.Pos.Y - this.carro.Pos.Y), 2)) < 10d)
+                {
+                    this.target.isPassou = true;
+               
+                }
             }
         }
+
 
         public String getString()
         {   
