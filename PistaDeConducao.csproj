@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="AreaDeJogo.cs" />
     <Compile Include="Carro.cs" />
-    <Compile Include="Pistas.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

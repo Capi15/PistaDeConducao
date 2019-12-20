@@ -88,21 +88,6 @@ namespace PistaDeConducao
             areaDeJogo = new AreaDeJogo(pictureBoxArea.Size);
         }
 
-        private async void guardarPista_Click(object sender, EventArgs e)
-        {
-            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "text Documents|*.txt", ValidateNames = true })
-            {
-                if(sfd.ShowDialog() == DialogResult.OK)
-                {
-                    using(StreamWriter sw = new StreamWriter(sfd.FileName))
-                    {
-                        await sw.WriteAsync(areaDeJogo.getString());
-                        MessageBox.Show("Pista guardada com sucesso!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-        }
-
         private void numericUpDownFM_ValueChanged(object sender, EventArgs e)
         {
             areaDeJogo.Carro.MaxF = (float)numericUpDownFM.Value;
@@ -128,23 +113,21 @@ namespace PistaDeConducao
             {
                 iniciarSimulacao.Text = "Parar";
             }
-
-            //if (areaDeJogo.HasReachedTheEnd)
-            //{
-            //    foreach (var pontoN in areaDeJogo.Pontos)
-            //    {
-            //        pontoN.isPassou = false;
-            //    }
-            //    iniciarSimulacao.Text = "Começar";
-            //    areaDeJogo.HasReachedTheEnd = false;
-            //    areaDeJogo.move();
-            //}
         }
 
-        public String Iniciar
+        private async void guardarPista_Click(object sender, EventArgs e)
         {
-            get { return iniciarSimulacao.Text; }
-            set { iniciarSimulacao.Text = value; }
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "text Documents|*.txt", ValidateNames = true })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    using (StreamWriter sw = new StreamWriter(sfd.FileName))
+                    {
+                        await sw.WriteAsync(areaDeJogo.getString());
+                        MessageBox.Show("Pista guardada com sucesso!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
         }
 
         private async void selecionarPista_Click(object sender, EventArgs e)
